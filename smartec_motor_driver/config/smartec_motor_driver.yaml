@@ -3,4 +3,8 @@ obstacles_detection_lidar:
     interface: "socketcan"
     channel: "can32"
     bitrate: 500000
+    command_rate: 20
+    status_rate: 50 
+    base_width: 1.0
+    wheel_radius: 0.1905
     debug: false

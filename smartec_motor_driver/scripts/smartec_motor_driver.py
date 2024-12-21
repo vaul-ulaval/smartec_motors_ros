@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32
 from smartec_msgs.msg import SmartecStatus
+from geometry_msgs.msg import Twist
 import can
 import cantools
 import math
@@ -18,12 +19,15 @@ class SmartecDriver(Node, can.Listener):
         self.channel = self.declare_parameter('channel', 'can32').value
         self.bitrate = self.declare_parameter('bitrate', 500000).value
         self.database_file = self.declare_parameter('database_file', '').value
-        self.debug = self.declare_parameter('debug', False).value
         self.command_rate = self.declare_parameter('command_rate', 20).value
         self.status_rate = self.declare_parameter('status_rate', 50).value
+        self.base_width = self.declare_parameter('base_width', 1.0).value
+        self.wheel_radius = self.declare_parameter('wheel_radius', 0.2).value
+        self.debug = self.declare_parameter('debug', False).value
 
         self.left_vel_sub = self.create_subscription(Float32, '/motors/left/velocity', self.vel_left_callback, 10)
         self.right_vel_sub = self.create_subscription(Float32, '/motors/right/velocity', self.vel_right_callback, 10)
+        self.twist_sub = self.create_subscription(Twist, '/motors/cmd_vel', self.twist_callback, 10)
         self.left_velocity = 0.0
         self.right_velocity = 0.0
 
@@ -45,6 +49,15 @@ class SmartecDriver(Node, can.Listener):
 
     def vel_right_callback(self, msg):
         self.right_velocity = int(msg.data / (2 * math.pi) * 60) # Convert rad/s to RPM
+
+    def twist_callback(self, msg):
+        # Convert linear and angular velocities to left and right wheel velocities
+        linear = msg.linear.x
+        angular = msg.angular.z
+        left_vel_rads = int((linear - angular * self.base_width / 2) / self.wheel_radius)
+        right_vel_rads = int((linear + angular * self.base_width / 2) / self.wheel_radius)
+        self.left_velocity = int(left_vel_rads / (2 * math.pi) * 60)  # Convert rad/s to RPM
+        self.right_velocity = int(right_vel_rads / (2 * math.pi) * 60)  # Convert rad/s to RPM
 
     def on_message_received(self, msg):
         # Handle received CAN messages

@@ -13,6 +13,7 @@
   <depend>rclcpp</depend>
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
   <depend>smartec_msgs</depend>
   <exec_depend>python-cantools-pip</exec_depend>
   <exec_depend>python-can</exec_depend>
