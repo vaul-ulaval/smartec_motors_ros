@@ -1,0 +1,257 @@
+VERSION ""
+
+
+NS_ : 
+		NS_DESC_
+		CM_
+		BA_DEF_
+		BA_
+		VAL_
+		CAT_DEF_
+		CAT_
+		FILTER
+		BA_DEF_DEF_
+		EV_DATA_
+		ENVVAR_DATA_
+		SGTYPE_
+		SGTYPE_VAL_
+		BA_DEF_SGTYPE_
+		BA_SGTYPE_
+		SIG_TYPE_REF_
+		VAL_TABLE_
+		SIG_GROUP_
+		SIG_VALTYPE_
+		SIGTYPE_VALTYPE_
+		BO_TX_BU_
+		BA_DEF_REL_
+		BA_REL_
+		BA_DEF_DEF_REL_
+		BU_SG_REL_
+		BU_EV_REL_
+		BU_BO_REL_
+		SG_MUL_VAL_
+
+BS_:
+
+BU_:
+
+
+
+BO_ 2432650495 Control_GDM_Left_Right: 8 Vector__XXX
+	SG_ Left_ControlMode : 29|3@1+ (1,0) [0|8] "" Vector__XXX
+	SG_ Left_Command : 16|13@1- (1,-4096) [-4096|4095] "RPM" Vector__XXX
+	SG_ Right_ControlMode : 61|3@1+ (1,0) [0|8] "" Vector__XXX
+	SG_ Right_Command : 48|13@1- (1,-4096) [-4096|4095] "RPM" Vector__XXX
+
+BO_ 2432652543 System_Derate: 8 Vector__XXX
+	SG_ Output_Self_Limit : 16|10@1+ (0.097751,0) [0|100] "%" Vector__XXX
+	SG_ Output_Amt_Used : 26|10@1+ (0.097751,0) [0|100] "%" Vector__XXX
+
+BO_ 2432639487 MowNet_Faults_and_Misc: 8 Vector__XXX
+	SG_ CurrentFaultCode : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ CurrentFaultLocale : 0|4@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ OperationTime : 16|24@1+ (1,0) [0|16777215] "sec" Vector__XXX
+	SG_ TempC : 40|8@1+ (0.64,50) [-50|113.2] "C" Vector__XXX
+	SG_ LatchedFaultCode : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ LatchedFaultLocale : 4|4@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ BatteryV : 56|8@1+ (0.05,4) [0|16.75] "V" Vector__XXX
+
+BO_ 2432640388 VIM_General_Status: 8 Vector__XXX
+	SG_ OP_PRESS_IN : 11|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ PTO_SELECT_IN : 12|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ BRAKE_IN : 13|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ LatchedFaultCode : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ LatchedFaultLocale : 20|4@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ LatchFaultSourceAddr : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ STATE : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+	SG_ CAL_STATUS : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ START_GATE : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ PTO_GATE : 9|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ START_IN : 10|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ OIL_PRESS_IN : 14|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ SPARE_IN : 15|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ PTACH_IN : 16|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ HI_LO_IN : 17|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ EKILL_GATE : 18|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ EngineRunning : 19|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ Tachometer : 48|8@1+ (2,0) [0|8160] "" Vector__XXX
+	SG_ bCond1 : 24|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ bCond2 : 25|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ bCond3 : 26|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ NTACH_IN : 31|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ EKILL_STAT : 30|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ PTO_STAT : 29|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ START_STAT : 28|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ Calibration_Not_Allowed : 27|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 2432644992 Left_EDM_General_Status: 8 Vector__XXX
+	SG_ SwashPos : 0|12@1- (0.087890625,0) [-180|180] "deg" Vector__XXX
+	SG_ SwashVel : 24|12@1- (0.87890625,0) [-1800|1800] "deg/sec" Vector__XXX
+	SG_ Current : 16|8@1+ (0.25,0) [0|63.75] "A" Vector__XXX
+	SG_ IsLocked : 12|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ CAL_STATUS : 14|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ ControlModeSelect : 36|4@1+ (1,0) [0|7] "" Vector__XXX
+	SG_ PosIsValid : 13|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ Locale : 48|4@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ Latched_Fault_Code : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ State : 52|4@1+ (1,0) [0|15] "" Vector__XXX
+	
+BO_ 2432644993 Right_EDM_General_Status: 8 Vector__XXX
+	SG_ SwashPos : 0|12@1- (0.087890625,0) [-180|180] "deg" Vector__XXX
+	SG_ SwashVel : 24|12@1- (0.87890625,0) [-1800|1800] "deg/sec" Vector__XXX
+	SG_ Current : 16|8@1+ (0.25,0) [0|63.75] "A" Vector__XXX
+	SG_ IsLocked : 12|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ CAL_STATUS : 14|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ ControlModeSelect : 36|4@1+ (1,0) [0|7] "" Vector__XXX
+	SG_ PosIsValid : 13|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ Locale : 48|4@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ Latched_Fault_Code : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ State : 52|4@1+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 2432644226 Left_LBSM_General_Status: 8 Vector__XXX
+	SG_ Position : 16|12@1- (0.087890625,0) [-180|179.91] "deg" Vector__XXX
+	SG_ LapBarIsNeutral : 29|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ CurrentLocale : 56|4@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ Latched_Fault_Code : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+	
+BO_ 2432644227 Right_LBSM_General_Status: 8 Vector__XXX
+	SG_ Position : 16|12@1- (0.087890625,0) [-180|179.91] "deg" Vector__XXX
+	SG_ LapBarIsNeutral : 29|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ CurrentLocale : 56|4@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ Latched_Fault_Code : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 2432660618 Left_DCM_General_Status: 8 Vector__XXX
+	SG_ RPM : 0|16@1- (1,0) [-32768|32767] "RPM" Vector__XXX
+	SG_ VBus : 24|8@1+ (1,0) [0|255] "V" Vector__XXX
+	SG_ TempC : 32|8@1+ (1,0) [0|255] "C" Vector__XXX
+	SG_ CurrentA : 40|8@1- (1,0) [-128|127] "A" Vector__XXX
+	SG_ VMowNet : 52|4@1+ (1,6) [6|21] "V" Vector__XXX
+	SG_ Locale : 48|4@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ LatchedFaultCode : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+	
+BO_ 2432660619 Right_DCM_General_Status: 8 Vector__XXX
+	SG_ RPM : 0|16@1- (1,0) [-32768|32767] "RPM" Vector__XXX
+	SG_ VBus : 24|8@1+ (1,0) [0|255] "V" Vector__XXX
+	SG_ TempC : 32|8@1+ (1,0) [0|255] "C" Vector__XXX
+	SG_ CurrentA : 40|8@1- (1,0) [-128|127] "A" Vector__XXX
+	SG_ VMowNet : 52|4@1+ (1,6) [6|21] "V" Vector__XXX
+	SG_ Locale : 48|4@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ LatchedFaultCode : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 2432649350 Left_GDM_General_Status: 8 Vector__XXX
+	SG_ ControlMode : 13|3@1+ (1,0) [0|7] "" Vector__XXX
+	SG_ MeasureRPM : 0|13@1- (1,0) [-4096|4096] "RPM" Vector__XXX
+	SG_ BusVoltage : 16|9@1+ (0.2,0) [0|102.3] "V" Vector__XXX
+	SG_ EstimatedPower : 25|12@1- (10,0) [-20480|20470] "W" Vector__XXX
+	SG_ AlignedTorqueCurrent : 37|11@1- (0.5,0) [-512|511.5] "A" Vector__XXX
+	SG_ PowerOnSafetyTestState : 48|4@1+ (1,0) [0|15] "" Vector__XXX
+	SG_ LatchedFaultCode : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ Locale : 52|4@1+ (1,0) [0|3] "" Vector__XXX
+	
+BO_ 2432649351 Right_GDM_General_Status: 8 Vector__XXX
+	SG_ ControlMode : 13|3@1+ (1,0) [0|7] "" Vector__XXX
+	SG_ MeasureRPM : 0|13@1- (1,0) [-4096|4096] "RPM" Vector__XXX
+	SG_ BusVoltage : 16|9@1+ (0.2,0) [0|102.3] "V" Vector__XXX
+	SG_ EstimatedPower : 25|12@1- (10,0) [-20480|20470] "W" Vector__XXX
+	SG_ AlignedTorqueCurrent : 37|11@1- (0.5,0) [-512|511.5] "A" Vector__XXX
+	SG_ PowerOnSafetyTestState : 48|4@1+ (1,0) [0|15] "" Vector__XXX
+	SG_ LatchedFaultCode : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ Locale : 52|4@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2432661648 Left_SSM_General_Status: 8 Vector__XXX
+	SG_ ControlMode : 13|3@1+ (1,0) [0|7] "" Vector__XXX
+	SG_ MeasuredRPM : 0|13@1- (1,0) [-4096|4096] "RPM" Vector__XXX
+	SG_ DCBusVoltage : 16|8@1+ (0.2,0) [0|102.3] "V" Vector__XXX
+	SG_ FetTempC : 24|8@1+ (1,0) [0|255] "C" Vector__XXX
+	SG_ AmbTempC : 32|8@1+ (1,0) [0|255] "C" Vector__XXX
+	SG_ MotTempC : 40|8@1+ (1,0) [0|255] "C" Vector__XXX
+	SG_ PowerOnSafetyTestState : 48|4@1+ (1,0) [0|15] "" Vector__XXX
+	SG_ LatchedFaultCode : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ Locale : 52|4@1+ (1,0) [0|3] "" Vector__XXX
+	
+BO_ 2432661649 Right_SSM_General_Status: 8 Vector__XXX
+	SG_ ControlMode : 13|3@1+ (1,0) [0|7] "" Vector__XXX
+	SG_ MeasuredRPM : 0|13@1- (1,0) [-4096|4096] "RPM" Vector__XXX
+	SG_ DCBusVoltage : 16|8@1+ (0.2,0) [0|102.3] "V" Vector__XXX
+	SG_ FetTempC : 24|8@1+ (1,0) [0|255] "C" Vector__XXX
+	SG_ AmbTempC : 32|8@1+ (1,0) [0|255] "C" Vector__XXX
+	SG_ MotTempC : 40|8@1+ (1,0) [0|255] "C" Vector__XXX
+	SG_ PowerOnSafetyTestState : 48|4@1+ (1,0) [0|15] "" Vector__XXX
+	SG_ LatchedFaultCode : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ Locale : 52|4@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2432663799 Digital_Switch_Control: 8 Vector__XXX
+	SG_ TractionSpeedSwitch : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ DeckSpeedSwitch : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2432695592 Digital_Switch_Control_Heartbeat: 8 Vector__XXX
+	SG_ Display_Unlocked : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+	SG_ Display_Heartbeat : 24|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 2499752183 MowNet_eLink: 8 Vector__XXX
+	SG_ Override_Left_Lapbar : 16|12@1- (0.087890625,0) [-180|180] "deg" Vector__XXX
+	SG_ Override_Right_Lapbar : 28|12@1- (0.087890625,0) [-180|180] "deg" Vector__XXX
+	SG_ TokResp : 0|16@1+ (1,0) [0|0] "" Vector__XXX
+	SG_ Latched_Fault : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+	SG_ inSpare : 56|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ inStart : 58|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ inOpPres : 60|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ inPTOSel : 62|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ inVirtual : 48|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ inHiLo : 50|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ inBrakeEn : 52|2@1+ (1,0) [0|3] "" Vector__XXX
+	SG_ inOilPress : 54|2@1+ (1,0) [0|3] "" Vector__XXX
+
+
+CM_ BO_ 2432650495 "The GDM Control frame allows for state and speed targets to be passed to networked TCMs.";
+CM_ SG_ 2432650374 Left_ControlMode "Commanded control mode for LH TCM";
+CM_ BO_ 2432652543 "The System Derate PGN is intended to provide feedback to the high-level system coordinator. The information contained within details the controller’s ability to produce torque and the level to which it is derated if applicable";
+CM_ BO_ 2432639487 "MowNet Faults and Misc details current and latched fault status, if present, as well as module operation time, temperature and voltage of the reporting module. All MowNet modules transmit this message";
+CM_ BO_ 2432640388 "VIM General Status details assorted switch states as well as fault codes for system-level detail.";
+CM_ BO_ 2432644992 "The EDM General Status frame is intended to provide status of EDM logic inputs and relay outputs. The inputs reported in this frame are the state of the physical switches.";
+CM_ BO_ 2432644993 "The EDM General Status frame is intended to provide status of EDM logic inputs and relay outputs. The inputs reported in this frame are the state of the physical switches.";
+CM_ BO_ 2432644226 "LBSM General Status details LBSM position, neutral state, and LBSM fault codes.";
+CM_ BO_ 2432644227 "LBSM General Status details LBSM position, neutral state, and LBSM fault codes.";
+CM_ BO_ 2432660618 "The DCM General Status frame is intended to provide the basic state of the DCM for high-level diagnostic and information purposes";
+CM_ BO_ 2432660619 "The DCM General Status frame is intended to provide the basic state of the DCM for high-level diagnostic and information purposes";
+CM_ BO_ 2432649350 "GDM General Status details the basic state of the GDM for high-level diagnostic and information.";
+CM_ BO_ 2432649351 "GDM General Status details the basic state of the GDM for high-level diagnostic and information.";
+CM_ BO_ 2432661648 "SSM General Status details the basic state of the SSM for high-level diagnostic and information.";
+CM_ BO_ 2432661649 "SSM General Status details the basic state of the SSM for high-level diagnostic and information.";
+CM_ BO_ 2432663799 "Digital Switch Control frame provides the input to the VIM to establish the state command of each appropriate High / Low function.";
+CM_ SG_ 2432663799 TractionSpeedSwitch "Commanded state of the Traction Speed Switch";
+CM_ SG_ 2432663799 DeckSpeedSwitch "Commanded state of the Deck Speed Switch";
+CM_ BO_ 2432695592 "Digital Switch Control Heartbeat allows for application of a MowNet system power-on locking function, as well as providing a heartbeat to ensure robust communication of Digital Switch Control states.";
+CM_ SG_ 2432695592 Display_Unlocked "Unlock state of display";
+CM_ SG_ 2432695592 Display_Heartbeat "Display health signal";
+CM_ BO_ 2499752183 "eLink is intended to allow control of a MowNet enabled vehicle over the CAN Bus.";
+CM_ SG_ 2499752183 Override_Left_Lapbar "Overrides left LBSM input";
+CM_ SG_ 2499752183 Override_Right_Lapbar "Overrides right LBSM input";
+CM_ SG_ 2499752183 TokResp "Token Response system for security (Not implemented)";
+CM_ SG_ 2499752183 Latched_Fault "Allows injection of faults into MowNet";
+CM_ SG_ 2499752183 inSpare "Allows override of spare input";
+CM_ SG_ 2499752183 inStart "Allows override of start input";
+CM_ SG_ 2499752183 inOpPres "Allows override of operator presence switch";
+CM_ SG_ 2499752183 inPTOSel "Allows override of PTO switch";
+CM_ SG_ 2499752183 inVirtual "Virtual switch input to MowNet";
+CM_ SG_ 2499752183 inHiLo "Allows override of Hi/Lo switch";
+CM_ SG_ 2499752183 inBrakeEn "Allows override of the brake switch";
+CM_ SG_ 2499752183 inOilPress "Allows override of the oil pressure switch";
+BA_DEF_ SG_  "SPN" INT 0 524287;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG";
+BA_DEF_  "DatabaseVersion" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "ProtocolType" STRING ;
+BA_DEF_  "DatabaseCompiler" STRING ;
+BA_DEF_DEF_  "SPN" 0;
+BA_DEF_DEF_  "VFrameFormat" "J1939PG";
+BA_DEF_DEF_  "DatabaseVersion" "DEMO PLUS";
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "ProtocolType" "";
+BA_DEF_DEF_  "DatabaseCompiler" "";
+BA_ "ProtocolType" "J1939";
+BA_ "BusType" "CAN";
+BA_ "DatabaseCompiler" "CSS ELECTRONICS (WWW.CSSELECTRONICS.COM)";
+BA_ "DatabaseVersion" "1.0.0";
+BA_ "VFrameFormat" BO_ 2566844926 3;
+BA_ "SPN" SG_ 2566844926 WheelBasedVehicleSpeed 84;

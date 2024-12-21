@@ -1,0 +1,6 @@
+obstacles_detection_lidar:
+  ros__parameters:
+    interface: "socketcan"
+    channel: "can32"
+    bitrate: 500000
+    debug: false
