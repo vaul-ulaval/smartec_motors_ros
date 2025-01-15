@@ -94,7 +94,6 @@ class SmartecDriver(Node, can.Listener):
             'Right_Command': self.right_command
         })
         try:
-            self.get_logger().info(f"Sending command to motors: Left {self.left_command}, Right {self.right_command}")
             self.can_bus.send(can.Message(arbitration_id=message.frame_id, data=command))
         except can.CanOperationError as e:
             self.get_logger().error(f"Failed to transmit: {e}. Retrying...")
@@ -158,9 +157,11 @@ class SmartecDriver(Node, can.Listener):
     def check_idle(self):
         elapsed_time = (self.get_clock().now() - self.last_cmd_time).nanoseconds / 1e9 
         if elapsed_time > self.idle_timeout and (self.left_command != 0 or self.right_command !=0):
+            self.get_logger().info("IDLE")
             self.stop_motors()
 
     def stop_motors(self):
+        self.get_logger().info("STOP")
         self.left_command = 0
         self.right_command = 0
         self.send_commands()
