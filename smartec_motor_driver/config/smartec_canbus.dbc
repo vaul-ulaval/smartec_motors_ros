@@ -39,9 +39,9 @@ BU_:
 
 BO_ 2432650495 Control_GDM_Left_Right: 8 Vector__XXX
 	SG_ Left_ControlMode : 29|3@1+ (1,0) [0|8] "" Vector__XXX
-	SG_ Left_Command : 16|13@1- (1,-4096) [-4096|4095] "RPM" Vector__XXX
+	SG_ Left_Command : 16|13@1- (1,0) [-4096|4095] "RPM" Vector__XXX
 	SG_ Right_ControlMode : 61|3@1+ (1,0) [0|8] "" Vector__XXX
-	SG_ Right_Command : 48|13@1- (1,-4096) [-4096|4095] "RPM" Vector__XXX
+	SG_ Right_Command : 48|13@1- (1,0) [-4096|4095] "RPM" Vector__XXX
 
 BO_ 2432652543 System_Derate: 8 Vector__XXX
 	SG_ Output_Self_Limit : 16|10@1+ (0.097751,0) [0|100] "%" Vector__XXX
@@ -138,9 +138,9 @@ BO_ 2432660619 Right_DCM_General_Status: 8 Vector__XXX
 	SG_ Locale : 48|4@1+ (1,0) [0|3] "" Vector__XXX
 	SG_ LatchedFaultCode : 56|8@1+ (1,0) [0|255] "" Vector__XXX
 
-BO_ 2432649350 Left_GDM_General_Status: 8 Vector__XXX
+BO_ 2164213894 Left_GDM_General_Status: 8 Vector__XXX
 	SG_ ControlMode : 13|3@1+ (1,0) [0|7] "" Vector__XXX
-	SG_ MeasureRPM : 0|13@1- (1,0) [-4096|4096] "RPM" Vector__XXX
+	SG_ MeasuredRPM : 0|13@1- (1,0) [-4096|4096] "RPM" Vector__XXX
 	SG_ BusVoltage : 16|9@1+ (0.2,0) [0|102.3] "V" Vector__XXX
 	SG_ EstimatedPower : 25|12@1- (10,0) [-20480|20470] "W" Vector__XXX
 	SG_ AlignedTorqueCurrent : 37|11@1- (0.5,0) [-512|511.5] "A" Vector__XXX
@@ -148,9 +148,9 @@ BO_ 2432649350 Left_GDM_General_Status: 8 Vector__XXX
 	SG_ LatchedFaultCode : 56|8@1+ (1,0) [0|255] "" Vector__XXX
 	SG_ Locale : 52|4@1+ (1,0) [0|3] "" Vector__XXX
 	
-BO_ 2432649351 Right_GDM_General_Status: 8 Vector__XXX
+BO_ 2164213895 Right_GDM_General_Status: 8 Vector__XXX
 	SG_ ControlMode : 13|3@1+ (1,0) [0|7] "" Vector__XXX
-	SG_ MeasureRPM : 0|13@1- (1,0) [-4096|4096] "RPM" Vector__XXX
+	SG_ MeasuredRPM : 0|13@1- (1,0) [-4096|4096] "RPM" Vector__XXX
 	SG_ BusVoltage : 16|9@1+ (0.2,0) [0|102.3] "V" Vector__XXX
 	SG_ EstimatedPower : 25|12@1- (10,0) [-20480|20470] "W" Vector__XXX
 	SG_ AlignedTorqueCurrent : 37|11@1- (0.5,0) [-512|511.5] "A" Vector__XXX
@@ -158,7 +158,7 @@ BO_ 2432649351 Right_GDM_General_Status: 8 Vector__XXX
 	SG_ LatchedFaultCode : 56|8@1+ (1,0) [0|255] "" Vector__XXX
 	SG_ Locale : 52|4@1+ (1,0) [0|3] "" Vector__XXX
 
-BO_ 2432661648 Left_SSM_General_Status: 8 Vector__XXX
+BO_ 2164226192 Left_SSM_General_Status: 8 Vector__XXX
 	SG_ ControlMode : 13|3@1+ (1,0) [0|7] "" Vector__XXX
 	SG_ MeasuredRPM : 0|13@1- (1,0) [-4096|4096] "RPM" Vector__XXX
 	SG_ DCBusVoltage : 16|8@1+ (0.2,0) [0|102.3] "V" Vector__XXX
@@ -169,7 +169,7 @@ BO_ 2432661648 Left_SSM_General_Status: 8 Vector__XXX
 	SG_ LatchedFaultCode : 56|8@1+ (1,0) [0|255] "" Vector__XXX
 	SG_ Locale : 52|4@1+ (1,0) [0|3] "" Vector__XXX
 	
-BO_ 2432661649 Right_SSM_General_Status: 8 Vector__XXX
+BO_ 2164226193 Right_SSM_General_Status: 8 Vector__XXX
 	SG_ ControlMode : 13|3@1+ (1,0) [0|7] "" Vector__XXX
 	SG_ MeasuredRPM : 0|13@1- (1,0) [-4096|4096] "RPM" Vector__XXX
 	SG_ DCBusVoltage : 16|8@1+ (0.2,0) [0|102.3] "V" Vector__XXX
@@ -214,10 +214,10 @@ CM_ BO_ 2432644226 "LBSM General Status details LBSM position, neutral state, an
 CM_ BO_ 2432644227 "LBSM General Status details LBSM position, neutral state, and LBSM fault codes.";
 CM_ BO_ 2432660618 "The DCM General Status frame is intended to provide the basic state of the DCM for high-level diagnostic and information purposes";
 CM_ BO_ 2432660619 "The DCM General Status frame is intended to provide the basic state of the DCM for high-level diagnostic and information purposes";
-CM_ BO_ 2432649350 "GDM General Status details the basic state of the GDM for high-level diagnostic and information.";
-CM_ BO_ 2432649351 "GDM General Status details the basic state of the GDM for high-level diagnostic and information.";
-CM_ BO_ 2432661648 "SSM General Status details the basic state of the SSM for high-level diagnostic and information.";
-CM_ BO_ 2432661649 "SSM General Status details the basic state of the SSM for high-level diagnostic and information.";
+CM_ BO_ 2164213894 "GDM General Status details the basic state of the GDM for high-level diagnostic and information.";
+CM_ BO_ 2164213895 "GDM General Status details the basic state of the GDM for high-level diagnostic and information.";
+CM_ BO_ 2164226192 "SSM General Status details the basic state of the SSM for high-level diagnostic and information.";
+CM_ BO_ 2164226193 "SSM General Status details the basic state of the SSM for high-level diagnostic and information.";
 CM_ BO_ 2432663799 "Digital Switch Control frame provides the input to the VIM to establish the state command of each appropriate High / Low function.";
 CM_ SG_ 2432663799 TractionSpeedSwitch "Commanded state of the Traction Speed Switch";
 CM_ SG_ 2432663799 DeckSpeedSwitch "Commanded state of the Deck Speed Switch";

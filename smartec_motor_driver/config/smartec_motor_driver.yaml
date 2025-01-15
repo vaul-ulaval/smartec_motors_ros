@@ -1,10 +1,14 @@
-obstacles_detection_lidar:
-  ros__parameters:
-    interface: "socketcan"
-    channel: "can32"
-    bitrate: 500000
-    command_rate: 20
-    status_rate: 50 
-    base_width: 1.0
-    wheel_radius: 0.1905
-    debug: false
+/**:
+  smartec_motor_driver:
+    ros__parameters:
+      interface: "socketcan"
+      channel: "can32"
+      bitrate: 500000
+      command_rate: 50
+      status_rate: 20
+      odom_rate: 50 
+      base_width: 0.82
+      wheel_radius: 0.1825
+      gear_ratio: 10.85625
+      idle_timeout: 0.25
+      debug: false
