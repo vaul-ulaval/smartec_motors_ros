@@ -3,7 +3,7 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.callback_groups import ReentrantCallbackGroup
-from std_msgs.msg import Float32
+from std_msgs.msg import Float32, Bool
 from smartec_msgs.msg import SmartecStatus
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
@@ -43,9 +43,11 @@ class SmartecDriver(Node, can.Listener):
         self.gear_ratio = self.declare_parameter('gear_ratio', 17.37).value
         self.idle_timeout = self.declare_parameter('idle_timeout', 0.5).value
         self.debug = self.declare_parameter('debug', False).value
+        self.deadman_switch = False
 
     def init_subscribers(self):
         self.twist_sub = self.create_subscription(Twist, '/motors/cmd_vel', self.twist_callback, 10)
+        self.deadman_sub = self.create_subscription(Bool, '/deadman_switch', self.deadman_callback, 10)
 
     def init_publishers(self):
         self.left_status_pub = self.create_publisher(SmartecStatus, '/motors/left/status', 10)
@@ -71,6 +73,13 @@ class SmartecDriver(Node, can.Listener):
         right_cmd_rad = (msg.linear.x + msg.angular.z * self.base_width / 2) / self.wheel_radius * self.gear_ratio
         self.left_command = int(left_cmd_rad / (2 * math.pi) * 60)  # Convert rad/s to RPM
         self.right_command = int(right_cmd_rad / (2 * math.pi) * 60)  # Convert rad/s to RPM
+
+    def deadman_callback(self, msg):
+        if msg.data == False:
+            self.deadman_switch = False
+        
+        if msg.data == True and self.deadman_switch == False:
+            self.deadman_switch = True
 
     def on_message_received(self, msg):
         # Handle received CAN messages
@@ -162,6 +171,7 @@ class SmartecDriver(Node, can.Listener):
 
     def stop_motors(self):
         self.get_logger().info("STOP")
+                   
         self.left_command = 0
         self.right_command = 0
         self.send_commands()
