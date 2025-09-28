@@ -21,7 +21,7 @@ class SmartecDriver(Node, can.Listener):
         self.left_status = SmartecStatus()
         self.right_status = SmartecStatus()
         self.pose = [0, 0, 0]
-        self.deadman_switch = False
+        self.teleop_switch = False
 
 
         self.setup_parameters()
@@ -52,7 +52,7 @@ class SmartecDriver(Node, can.Listener):
 
     def init_subscribers(self):
         self.twist_sub = self.create_subscription(Twist, '/motors/cmd_vel', self.twist_callback, 10)
-        self.deadman_sub = self.create_subscription(Bool, '/deadman_switch', self.deadman_callback, 10)
+        self.deadman_sub = self.create_subscription(Bool, '/teleop_switch', self.brake_callback, 10)
 
     def init_publishers(self):
         self.left_status_pub = self.create_publisher(SmartecStatus, '/motors/left/status', 10)
@@ -79,12 +79,9 @@ class SmartecDriver(Node, can.Listener):
         self.left_command = int(left_cmd_rad / (2 * math.pi) * 60)  # Convert rad/s to RPM
         self.right_command = int(right_cmd_rad / (2 * math.pi) * 60)  # Convert rad/s to RPM
 
-    def deadman_callback(self, msg):
-        self.deadman_switch = msg.data
+    def brake_callback(self, msg):
 
-        if not self.deadman_switch:
-            self.stop_motors()
-
+        self.teleop_switch = msg.data
 
     def on_message_received(self, msg):
         # Handle received CAN messages
@@ -102,9 +99,9 @@ class SmartecDriver(Node, can.Listener):
         # Send velocity commands to the motors
         message = self.database.get_message_by_name('Control_GDM_Left_Right')
         command = message.encode({
-            'Left_ControlMode': self.rpm_control_mode if self.deadman_switch == True or self.left_command != 0 else self.hard_stop_mode,
+            'Left_ControlMode': self.rpm_control_mode if self.teleop_switch == True or self.left_command != 0 else self.hard_stop_mode,
             'Left_Command': self.left_command,
-            'Right_ControlMode': self.rpm_control_mode if self.deadman_switch == True or self.right_command != 0 else self.hard_stop_mode,
+            'Right_ControlMode': self.rpm_control_mode if self.teleop_switch == True or self.right_command != 0 else self.hard_stop_mode,
             'Right_Command': self.right_command
         })
         try:
