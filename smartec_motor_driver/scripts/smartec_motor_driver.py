@@ -21,6 +21,7 @@ class SmartecDriver(Node, can.Listener):
         self.left_status = SmartecStatus()
         self.right_status = SmartecStatus()
         self.pose = [0, 0, 0]
+        self.deadman_switch = False
 
         self.setup_parameters()
         self.init_subscribers()
@@ -43,7 +44,10 @@ class SmartecDriver(Node, can.Listener):
         self.gear_ratio = self.declare_parameter('gear_ratio', 17.37).value
         self.idle_timeout = self.declare_parameter('idle_timeout', 0.5).value
         self.debug = self.declare_parameter('debug', False).value
-        self.deadman_switch = False
+        # These modes match the names give by HydroGear
+        self.rpm_control_mode = self.declare_parameter('rpm_control_mode', 2).value
+        self.hard_stop_mode = self.declare_parameter('hard_stop_mode', 1).value
+        
 
     def init_subscribers(self):
         self.twist_sub = self.create_subscription(Twist, '/motors/cmd_vel', self.twist_callback, 10)
@@ -75,11 +79,11 @@ class SmartecDriver(Node, can.Listener):
         self.right_command = int(right_cmd_rad / (2 * math.pi) * 60)  # Convert rad/s to RPM
 
     def deadman_callback(self, msg):
-        if msg.data == False:
-            self.deadman_switch = False
-        
-        if msg.data == True and self.deadman_switch == False:
-            self.deadman_switch = True
+        self.deadman_switch = msg.data
+
+        if not self.deadman_switch:
+            self.stop_motors()
+
 
     def on_message_received(self, msg):
         # Handle received CAN messages
@@ -97,9 +101,9 @@ class SmartecDriver(Node, can.Listener):
         # Send velocity commands to the motors
         message = self.database.get_message_by_name('Control_GDM_Left_Right')
         command = message.encode({
-            'Left_ControlMode': 2 if self.left_command != 0 else 1,
+            'Left_ControlMode': self.rpm_control_mode if self.deadman_switch == True else self.hard_stop_mode,
             'Left_Command': self.left_command,
-            'Right_ControlMode': 2 if self.right_command != 0 else 1,
+            'Right_ControlMode': self.rpm_control_mode if self.deadman_switch == True else self.hard_stop_mode,
             'Right_Command': self.right_command
         })
         try:

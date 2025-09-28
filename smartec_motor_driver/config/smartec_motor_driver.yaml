@@ -12,3 +12,5 @@
       gear_ratio: 10.85625
       idle_timeout: 0.25
       debug: false
+      rpm_control_mode: 2
+      hard_stop_mode: 1
