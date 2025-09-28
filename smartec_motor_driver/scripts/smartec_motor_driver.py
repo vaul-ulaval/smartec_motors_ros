@@ -23,6 +23,7 @@ class SmartecDriver(Node, can.Listener):
         self.pose = [0, 0, 0]
         self.deadman_switch = False
 
+
         self.setup_parameters()
         self.init_subscribers()
         self.init_publishers()
@@ -101,9 +102,9 @@ class SmartecDriver(Node, can.Listener):
         # Send velocity commands to the motors
         message = self.database.get_message_by_name('Control_GDM_Left_Right')
         command = message.encode({
-            'Left_ControlMode': self.rpm_control_mode if self.deadman_switch == True else self.hard_stop_mode,
+            'Left_ControlMode': self.rpm_control_mode if self.deadman_switch == True or self.left_command != 0 else self.hard_stop_mode,
             'Left_Command': self.left_command,
-            'Right_ControlMode': self.rpm_control_mode if self.deadman_switch == True else self.hard_stop_mode,
+            'Right_ControlMode': self.rpm_control_mode if self.deadman_switch == True or self.right_command != 0 else self.hard_stop_mode,
             'Right_Command': self.right_command
         })
         try:
