@@ -34,7 +34,7 @@ class SmartecDriver(Node, can.Listener):
 
     def setup_parameters(self):
         self.interface = self.declare_parameter('interface', 'socketcan').value
-        self.channel = self.declare_parameter('channel', 'can32').value
+        self.channel = self.declare_parameter('channel', 'can0').value
         self.bitrate = self.declare_parameter('bitrate', 500000).value
         self.database_file = self.declare_parameter('database_file', '').value
         self.command_rate = self.declare_parameter('command_rate', 50).value
