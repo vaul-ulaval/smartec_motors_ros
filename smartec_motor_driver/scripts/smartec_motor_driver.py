@@ -7,6 +7,7 @@ from std_msgs.msg import Bool
 from smartec_msgs.msg import SmartecStatus
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
+from can_errors import FAULT_CODES
 import can
 import cantools
 import math
@@ -168,17 +169,9 @@ class SmartecDriver(Node, can.Listener):
         message = self.database.get_message_by_name("Control_GDM_Left_Right")
         command = message.encode(
             {
-                "Left_ControlMode": (
-                    self.rpm_control_mode
-                    if self.teleop_switch == True or self.left_command != 0
-                    else self.hard_stop_mode
-                ),
+                "Left_ControlMode": (self.rpm_control_mode if self.left_command != 0 else self.hard_stop_mode),
                 "Left_Command": self.left_command,
-                "Right_ControlMode": (
-                    self.rpm_control_mode
-                    if self.teleop_switch == True or self.right_command != 0
-                    else self.hard_stop_mode
-                ),
+                "Right_ControlMode": (self.rpm_control_mode if self.right_command != 0 else self.hard_stop_mode),
                 "Right_Command": self.right_command,
             }
         )
@@ -195,7 +188,7 @@ class SmartecDriver(Node, can.Listener):
         if self.left_status.fault_code != 0 or self.left_status.fault_code != 0:
 
             self.get_logger().error(
-                f"There is a can bus error left : {self.left_status.fault_code}, right: {self.right_status.fault_code}"
+                f"There is a can bus error left : {FAULT_CODES.get(self.left_status.fault_code)}, right: {FAULT_CODES.get(self.right_status.fault_code)}"
             )
 
     def update_status(self, decoded_message, status):
