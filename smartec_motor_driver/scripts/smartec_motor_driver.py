@@ -314,7 +314,6 @@ class SmartecDriver(Node, can.Listener):
         self.left_status = SmartecStatus()
         self.right_status = SmartecStatus()
         self.pose = [0, 0, 0]
-        self.teleop_switch = False
 
         self.setup_parameters()
         self.add_on_set_parameters_callback(self.parameters_callback)
@@ -412,7 +411,6 @@ class SmartecDriver(Node, can.Listener):
 
     def init_subscribers(self):
         self.twist_sub = self.create_subscription(Twist, "/motors/cmd_vel", self.twist_callback, 10)
-        self.deadman_sub = self.create_subscription(Bool, "/teleop_switch", self.brake_callback, 10)
 
     def init_publishers(self):
         self.left_status_pub = self.create_publisher(SmartecStatus, "/motors/left/status", 10)
@@ -438,10 +436,6 @@ class SmartecDriver(Node, can.Listener):
         right_cmd_rad = (msg.linear.x + msg.angular.z * self.base_width / 2) / self.wheel_radius * self.gear_ratio
         self.left_command = int(left_cmd_rad / (2 * math.pi) * 60)  # Convert rad/s to RPM
         self.right_command = int(right_cmd_rad / (2 * math.pi) * 60)  # Convert rad/s to RPM
-
-    def brake_callback(self, msg):
-
-        self.teleop_switch = msg.data
 
     def on_message_received(self, msg):
         # Handle received CAN messages
