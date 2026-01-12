@@ -23,6 +23,7 @@ ament_python_install_package(${PROJECT_NAME})
 # Install Python executables
 install(PROGRAMS
 scripts/smartec_motor_driver.py
+scripts/can_frames_publisher.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
