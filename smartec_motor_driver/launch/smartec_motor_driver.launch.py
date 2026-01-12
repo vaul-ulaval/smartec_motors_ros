@@ -6,14 +6,14 @@ import os
 
 
 def generate_launch_description():
-    
+
     ld = LaunchDescription()
     share_path = get_package_share_directory("smartec_motor_driver")
-    
+
     # Load config files
     config = os.path.join(share_path, "config", "smartec_motor_driver.yaml")
     db_file = os.path.join(share_path, "config", "smartec_canbus.dbc")
-
+    can_errors = os.path.join(share_path, "config", "can_errors.py")
     # init_canbus = ExecuteProcess(
     #     name="init_can",
     #     cmd=["sudo ip link set can32 up type can bitrate 500000"],
@@ -22,13 +22,10 @@ def generate_launch_description():
     # ld.add_action(init_canbus)
 
     smartec_motor_driver = Node(
-        package='smartec_motor_driver',
-        executable='smartec_motor_driver.py',
-        name='smartec_motor_driver',
-        parameters=[
-            config,
-            {"database_file": db_file}
-        ],
+        package="smartec_motor_driver",
+        executable="smartec_motor_driver.py",
+        name="smartec_motor_driver",
+        parameters=[config, {"database_file": db_file}],
     )
     ld.add_action(smartec_motor_driver)
 
