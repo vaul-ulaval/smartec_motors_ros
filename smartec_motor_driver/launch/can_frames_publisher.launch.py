@@ -6,10 +6,10 @@ import os
 
 
 def generate_launch_description():
-    
+
     ld = LaunchDescription()
     share_path = get_package_share_directory("smartec_motor_driver")
-    
+
     # Load config files
     config = os.path.join(share_path, "config", "smartec_motor_driver.yaml")
     db_file = os.path.join(share_path, "config", "smartec_canbus.dbc")
@@ -22,13 +22,10 @@ def generate_launch_description():
     # ld.add_action(init_canbus)
 
     can_frames_publisher = Node(
-        package='smartec_motor_driver',
-        executable='can_frames_publisher.py',
-        name='can_frames_publisher',
-        parameters=[
-            config,
-            {"database_file": db_file}
-        ],
+        package="smartec_motor_driver",
+        executable="can_frames_publisher.py",
+        name="can_frames_publisher",
+        parameters=[config, {"database_file": db_file}],
     )
     ld.add_action(can_frames_publisher)
 
