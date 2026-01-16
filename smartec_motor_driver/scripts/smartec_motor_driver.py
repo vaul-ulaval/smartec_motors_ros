@@ -502,6 +502,10 @@ class SmartecDriver(Node, can.Listener):
         odom_msg.twist.twist.linear.x = linear_velocity_x
         odom_msg.twist.twist.angular.z = angular_velocity_z
 
+        # Speed covariances
+        odom_msg.twist.covariance[0] = 0.3**2  # x
+        odom_msg.twist.covariance[7] = 0.3**2  # y
+
         # Update the robot's pose
         self.pose[0] += odom_msg.twist.twist.linear.x * dt * math.cos(self.pose[2])
         self.pose[1] += odom_msg.twist.twist.linear.x * dt * math.sin(self.pose[2])
