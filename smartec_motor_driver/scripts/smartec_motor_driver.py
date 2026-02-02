@@ -5,7 +5,7 @@ from rclpy.node import Node
 from rcl_interfaces.msg import SetParametersResult
 from std_msgs.msg import Bool
 from smartec_msgs.msg import SmartecStatus
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import TwistStamped
 from nav_msgs.msg import Odometry
 import can
 import cantools
@@ -410,7 +410,7 @@ class SmartecDriver(Node, can.Listener):
         return SetParametersResult(successful=True)
 
     def init_subscribers(self):
-        self.twist_sub = self.create_subscription(Twist, "/motors/cmd_vel", self.twist_callback, 10)
+        self.twist_sub = self.create_subscription(TwistStamped, "/motors/cmd_vel", self.twist_callback, 10)
 
     def init_publishers(self):
         self.left_status_pub = self.create_publisher(SmartecStatus, "/motors/left/status", 10)
@@ -429,11 +429,13 @@ class SmartecDriver(Node, can.Listener):
         self.accepted_ids = [msg.frame_id for msg in self.database.messages]
         self.notifier = can.Notifier(self.can_bus, [self])
 
-    def twist_callback(self, msg):
+    def twist_callback(self, msg: TwistStamped):
+        twist = msg.twist
+
         # Convert linear and angular velocities to left and right wheel velocities
         self.last_cmd_time = self.get_clock().now()
-        left_cmd_rad = (msg.linear.x - msg.angular.z * self.base_width / 2) / self.wheel_radius * self.gear_ratio
-        right_cmd_rad = (msg.linear.x + msg.angular.z * self.base_width / 2) / self.wheel_radius * self.gear_ratio
+        left_cmd_rad = (twist.linear.x - twist.angular.z * self.base_width / 2) / self.wheel_radius * self.gear_ratio
+        right_cmd_rad = (twist.linear.x + twist.angular.z * self.base_width / 2) / self.wheel_radius * self.gear_ratio
         self.left_command = int(left_cmd_rad / (2 * math.pi) * 60)  # Convert rad/s to RPM
         self.right_command = int(right_cmd_rad / (2 * math.pi) * 60)  # Convert rad/s to RPM
 
